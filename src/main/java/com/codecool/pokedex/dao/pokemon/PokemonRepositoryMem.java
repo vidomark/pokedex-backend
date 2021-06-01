@@ -2,6 +2,8 @@ package com.codecool.pokedex.dao.pokemon;
 
 import com.codecool.pokedex.dao.pokemon.util.PokemonUtil;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Type;
+import com.codecool.pokedex.model.pokemon.TypesItem;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PokemonRepositoryMem implements PokemonRepository {
@@ -35,6 +38,16 @@ public class PokemonRepositoryMem implements PokemonRepository {
                 .filter(pokemon -> pokemon.getId() == id)
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Pokemon> getPokemonsByType(Type type) {
+        return pokemons.stream()
+                .filter(pokemon -> pokemon.getTypes()
+                        .stream()
+                        .map(TypesItem::getType)
+                        .anyMatch(pokemonType -> pokemonType.equals(type)))
+                        .collect(Collectors.toList());
     }
 
     private void createPokemons() throws IOException {

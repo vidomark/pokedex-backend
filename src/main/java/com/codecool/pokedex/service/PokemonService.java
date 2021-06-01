@@ -2,6 +2,7 @@ package com.codecool.pokedex.service;
 
 import com.codecool.pokedex.dao.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -26,5 +27,9 @@ public class PokemonService {
 
     public Pokemon getPokemon(int id) {
         return pokemonRepository.getPokemon(id);
+    }
+
+    public List<Pokemon> getPokemonsByType(Type type) {
+        return pokemonRepository.getPokemonsByType(type);
     }
 }

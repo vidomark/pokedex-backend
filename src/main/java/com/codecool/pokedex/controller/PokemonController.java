@@ -1,6 +1,7 @@
 package com.codecool.pokedex.controller;
 
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Type;
 import com.codecool.pokedex.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,13 @@ public class PokemonController {
         return pokemonService.getPokemons();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "pokemon/{id}")
     public Pokemon getPokemon(@PathVariable("id") int id) {
         return pokemonService.getPokemon(id);
+    }
+
+    @PostMapping(path = "type/{type}")
+    public List<Pokemon> getPokemonsByType(@PathVariable("type") String typeName, @RequestBody Type type) {
+        return pokemonService.getPokemonsByType(type);
     }
 }
