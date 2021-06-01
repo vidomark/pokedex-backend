@@ -1,4 +1,4 @@
-package com.codecool.pokedex.datalayer.dao;
+package com.codecool.pokedex.dao;
 
 import com.codecool.pokedex.model.Pokemon;
 import java.util.List;

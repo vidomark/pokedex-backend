@@ -1,6 +1,6 @@
-package com.codecool.pokedex.datalayer.memory;
+package com.codecool.pokedex.dao;
 
-import com.codecool.pokedex.datalayer.dao.PokemonRepository;
+import com.codecool.pokedex.dao.PokemonRepository;
 import com.codecool.pokedex.model.Pokemon;
 import org.springframework.stereotype.Repository;
 
