@@ -1,6 +1,7 @@
-package com.codecool.pokedex.dao;
+package com.codecool.pokedex.dao.pokemon;
 
-import com.codecool.pokedex.dao.util.PokemonUtil;
+import com.codecool.pokedex.dao.pokemon.PokemonRepository;
+import com.codecool.pokedex.dao.pokemon.util.PokemonUtil;
 import com.codecool.pokedex.model.Pokemon;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class PokemonRepositoryMem implements PokemonRepository {

@@ -1,4 +1,4 @@
-package com.codecool.pokedex.dao.util;
+package com.codecool.pokedex.dao.pokemon.util;
 
 import com.codecool.pokedex.model.Pokemon;
 import com.google.gson.Gson;

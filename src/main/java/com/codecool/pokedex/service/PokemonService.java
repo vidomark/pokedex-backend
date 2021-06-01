@@ -1,6 +1,6 @@
 package com.codecool.pokedex.service;
 
-import com.codecool.pokedex.dao.PokemonRepository;
+import com.codecool.pokedex.dao.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,19 +1,12 @@
 package com.codecool.pokedex.controller;
 
-import com.codecool.pokedex.dao.util.PokemonUtil;
 import com.codecool.pokedex.model.Pokemon;
 import com.codecool.pokedex.service.PokemonService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/")
