@@ -1,8 +1,8 @@
-package com.codecool.pokedex.model;
+package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FormsItem{
+public class Stat{
 
 	@SerializedName("name")
 	private String name;

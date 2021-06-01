@@ -1,6 +1,6 @@
 package com.codecool.pokedex.controller;
 
-import com.codecool.pokedex.model.Pokemon;
+import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

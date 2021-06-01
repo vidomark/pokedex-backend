@@ -1,6 +1,7 @@
-package com.codecool.pokedex.model;
+package com.codecool.pokedex.model.pokemon;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Pokemon {

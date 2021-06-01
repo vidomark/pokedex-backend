@@ -1,6 +1,6 @@
 package com.codecool.pokedex.dao.pokemon.util;
 
-import com.codecool.pokedex.model.Pokemon;
+import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 

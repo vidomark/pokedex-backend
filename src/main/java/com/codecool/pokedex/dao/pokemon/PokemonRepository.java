@@ -1,6 +1,6 @@
 package com.codecool.pokedex.dao.pokemon;
 
-import com.codecool.pokedex.model.Pokemon;
+import com.codecool.pokedex.model.pokemon.Pokemon;
 import java.util.List;
 
 public interface PokemonRepository {

@@ -1,8 +1,7 @@
 package com.codecool.pokedex.dao.pokemon;
 
-import com.codecool.pokedex.dao.pokemon.PokemonRepository;
 import com.codecool.pokedex.dao.pokemon.util.PokemonUtil;
-import com.codecool.pokedex.model.Pokemon;
+import com.codecool.pokedex.model.pokemon.Pokemon;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
