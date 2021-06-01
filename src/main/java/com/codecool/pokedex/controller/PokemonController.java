@@ -8,10 +8,8 @@ import com.google.gson.GsonBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -34,4 +32,8 @@ public class PokemonController {
         return pokemonService.getPokemons();
     }
 
+    @GetMapping(path = "{id}")
+    public Pokemon getPokemon(@PathVariable("id") int id) {
+        return pokemonService.getPokemon(id);
+    }
 }

@@ -8,4 +8,6 @@ public interface PokemonRepository {
     List<Pokemon> getPokemons();
 
     boolean addPokemon(Pokemon pokemon);
+
+    Pokemon getPokemon(int id);
 }
