@@ -23,4 +23,8 @@ public class PokemonService {
     public boolean addPokemon(Pokemon pokemon) {
         return pokemonRepository.addPokemon(pokemon);
     }
+
+    public Pokemon getPokemon(int id) {
+        return pokemonRepository.getPokemon(id);
+    }
 }

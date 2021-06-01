@@ -30,8 +30,16 @@ public class PokemonRepositoryMem implements PokemonRepository {
         return pokemons.add(pokemon);
     }
 
+    @Override
+    public Pokemon getPokemon(int id) {
+        return pokemons.stream()
+                .filter(pokemon -> pokemon.getId() == id)
+                .findAny()
+                .orElse(null);
+    }
+
     private void createPokemons() throws IOException {
-        String endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=18";
+        String endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=60";
         JSONObject data = PokemonUtil.fetchData(endpoint);
         JSONArray pokemonJsonArray = data.getJSONArray("results");
         pokemonJsonArray.forEach(pokemonData -> {
@@ -44,16 +52,5 @@ public class PokemonRepositoryMem implements PokemonRepository {
                 exception.printStackTrace();
             }
         });
-        /*return pokemonList.toList().stream().map(pokemonData -> {
-            JSONObject pokemonJson = (JSONObject) pokemonData;
-            String pokemonUrl = pokemonJson.getString("url");
-            Pokemon pokemon = null;
-            try {
-                pokemon = PokemonUtil.fetchPokemon(pokemonUrl);
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-            return pokemon;
-        }).collect(Collectors.toList());*/
     }
 }
