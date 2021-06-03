@@ -76,16 +76,6 @@ public class PokemonRepositoryMem implements PokemonRepository {
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    @Override
-    public Set<Stat> getProperties() {
-        return pokemons
-                .stream()
-                .map(Pokemon::getStats)
-                .flatMap(List::stream)
-                .map(StatsItem::getStat)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
-    }
-
     private void createPokemons() throws IOException {
         String endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=60";
         JSONObject data = PokemonUtil.fetchData(endpoint);

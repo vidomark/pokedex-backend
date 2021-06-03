@@ -44,11 +44,6 @@ public class PokemonController {
         return pokemonService.getAbilities();
     }
 
-    @GetMapping(path = "properties")
-    public Set<Stat> getProperties() {
-        return pokemonService.getProperties();
-    }
-
     @PostMapping(path = "type/{type}")
     public Set<Pokemon> getPokemonsByType(@PathVariable("type") String typeName, @RequestBody Type type) {
         return pokemonService.getPokemonsByType(type);

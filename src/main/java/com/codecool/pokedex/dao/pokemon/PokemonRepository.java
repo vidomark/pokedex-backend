@@ -23,6 +23,4 @@ public interface PokemonRepository {
     Set<Ability> getAbilities();
 
     Set<Pokemon> getPokemonsByAbility(Ability ability);
-
-    Set<Stat> getProperties();
 }

@@ -48,7 +48,4 @@ public class PokemonService {
         return pokemonRepository.getPokemonsByAbility(ability);
     }
 
-    public Set<Stat> getProperties() {
-        return pokemonRepository.getProperties();
-    }
 }
