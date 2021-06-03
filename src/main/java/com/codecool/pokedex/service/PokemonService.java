@@ -3,6 +3,7 @@ package com.codecool.pokedex.service;
 import com.codecool.pokedex.dao.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Stat;
 import com.codecool.pokedex.model.pokemon.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,9 @@ public class PokemonService {
 
     public Set<Pokemon> getPokemonsByAbility(Ability ability) {
         return pokemonRepository.getPokemonsByAbility(ability);
+    }
+
+    public Set<Stat> getProperties() {
+        return pokemonRepository.getProperties();
     }
 }

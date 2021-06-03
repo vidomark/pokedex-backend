@@ -2,6 +2,7 @@ package com.codecool.pokedex.dao.pokemon;
 
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Stat;
 import com.codecool.pokedex.model.pokemon.Type;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface PokemonRepository {
     Set<Ability> getAbilities();
 
     Set<Pokemon> getPokemonsByAbility(Ability ability);
+
+    Set<Stat> getProperties();
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Repository
 public class PokemonRepositoryMem implements PokemonRepository {
 
-    private final Set<Pokemon> pokemons = new HashSet<>();
+    private final Set<Pokemon> pokemons = new LinkedHashSet<>();
 
     public PokemonRepositoryMem() throws IOException {
         createPokemons();
@@ -21,9 +21,7 @@ public class PokemonRepositoryMem implements PokemonRepository {
 
     @Override
     public Set<Pokemon> getPokemons() {
-        return pokemons.stream()
-                .sorted(Comparator.comparing(Pokemon::getId))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return pokemons;
     }
 
     @Override
@@ -75,6 +73,16 @@ public class PokemonRepositoryMem implements PokemonRepository {
                         .stream()
                         .map(AbilitiesItem::getAbility)
                         .anyMatch(pokemonAbility -> pokemonAbility.equals(ability)))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    @Override
+    public Set<Stat> getProperties() {
+        return pokemons
+                .stream()
+                .map(Pokemon::getStats)
+                .flatMap(List::stream)
+                .map(StatsItem::getStat)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 

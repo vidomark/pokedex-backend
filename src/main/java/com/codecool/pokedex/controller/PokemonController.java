@@ -2,6 +2,7 @@ package com.codecool.pokedex.controller;
 
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.model.pokemon.Stat;
 import com.codecool.pokedex.model.pokemon.Type;
 import com.codecool.pokedex.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class PokemonController {
     @GetMapping(path = "abilities")
     public Set<Ability> getAbilities() {
         return pokemonService.getAbilities();
+    }
+
+    @GetMapping(path = "properties")
+    public Set<Stat> getProperties() {
+        return pokemonService.getProperties();
     }
 
     @PostMapping(path = "type/{type}")
