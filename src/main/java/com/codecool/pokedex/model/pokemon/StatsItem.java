@@ -24,4 +24,6 @@ public class StatsItem{
 	public int getEffort(){
 		return effort;
 	}
+
+
 }
