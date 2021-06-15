@@ -1,9 +1,7 @@
 package com.codecool.pokedex.dao.pokemon;
 
-import com.codecool.pokedex.dao.pokemon.util.PokemonUtil;
+import com.codecool.pokedex.dao.pokemon.util.PokemonContainer;
 import com.codecool.pokedex.model.pokemon.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -13,10 +11,11 @@ import java.util.stream.Collectors;
 @Repository
 public class PokemonRepositoryMem implements PokemonRepository {
 
-    private final Set<Pokemon> pokemons = new LinkedHashSet<>();
+    private final Set<Pokemon> pokemons;
+    private final PokemonContainer pokemonContainer = new PokemonContainer();
 
     public PokemonRepositoryMem() throws IOException {
-        createPokemons();
+        pokemons = pokemonContainer.getPokemons();
     }
 
     @Override
@@ -74,21 +73,5 @@ public class PokemonRepositoryMem implements PokemonRepository {
                         .map(AbilitiesItem::getAbility)
                         .anyMatch(pokemonAbility -> pokemonAbility.equals(ability)))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-    }
-
-    private void createPokemons() throws IOException {
-        String endpoint = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=60";
-        JSONObject data = PokemonUtil.fetchData(endpoint);
-        JSONArray pokemonJsonArray = data.getJSONArray("results");
-        pokemonJsonArray.forEach(pokemonData -> {
-            JSONObject pokemonJson = (JSONObject) pokemonData;
-            String pokemonUrl = pokemonJson.getString("url");
-            try {
-                Pokemon pokemon = PokemonUtil.fetchPokemon(pokemonUrl);
-                pokemons.add(pokemon);
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        });
     }
 }
