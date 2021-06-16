@@ -10,12 +10,17 @@ import java.util.List;
 
 public class PokemonContainer { // for database creation only
 
-    private final String ENDPOINT =  "https://pokeapi.co/api/v2/pokemon?limit=200"; // 100 pokemons
-    private final JSONObject data = PokemonUtil.fetchData(ENDPOINT);
-    private final JSONArray pokemonJsonArray = data.getJSONArray("results");
+    private int pokemonNumber;
+    private String endpoint; // 100 pokemons
+    private JSONObject data;
+    private JSONArray pokemonJsonArray;
     private final List<Pokemon> pokemons = new ArrayList<>();
 
-    public PokemonContainer() throws IOException {
+    public PokemonContainer(int pokemonNumber) throws IOException {
+        this.pokemonNumber = pokemonNumber;
+        this.endpoint = String.format( "https://pokeapi.co/api/v2/pokemon?limit=%s", pokemonNumber);
+        this.data = PokemonUtil.fetchData(endpoint);
+        this.pokemonJsonArray =  data.getJSONArray("results");
         createPokemons();
     }
 

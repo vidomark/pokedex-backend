@@ -1,13 +1,19 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 @Data
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StatsItem{
 
 	@SerializedName("stat")
@@ -19,14 +25,4 @@ public class StatsItem{
 
 	@SerializedName("effort")
 	private int effort;
-
-	public int getBaseStat(){
-		return baseStat;
-	}
-
-	public int getEffort(){
-		return effort;
-	}
-
-
 }

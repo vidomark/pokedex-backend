@@ -1,6 +1,6 @@
 package com.codecool.pokedex.service;
 
-import com.codecool.pokedex.dao.pokemon.jpa.pokemonRepository;
+import com.codecool.pokedex.dao.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class PokemonService {
 
     @Autowired
-    private final pokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
 
-    public PokemonService(pokemonRepository pokemonRepository) {
+    public PokemonService(PokemonRepository pokemonRepository) {
         this.pokemonRepository = pokemonRepository;
     }
 

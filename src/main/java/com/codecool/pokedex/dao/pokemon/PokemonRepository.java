@@ -1,8 +1,9 @@
-package com.codecool.pokedex.dao.pokemon.jpa;
+package com.codecool.pokedex.dao.pokemon;
 
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface pokemonRepository extends JpaRepository<Pokemon, Integer> {
+public interface PokemonRepository extends JpaRepository<Pokemon, Integer> {
 
     @Query("SELECT DISTINCT typeItem.type FROM Pokemon pokemon " +
                 "INNER JOIN pokemon.types typeItem")

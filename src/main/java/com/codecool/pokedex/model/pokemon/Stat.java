@@ -1,7 +1,10 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -9,6 +12,9 @@ import java.util.Objects;
 
 @Embeddable
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Stat{
 
 	@SerializedName("name")

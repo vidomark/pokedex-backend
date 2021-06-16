@@ -1,21 +1,16 @@
 package com.codecool.pokedex;
 
-import com.codecool.pokedex.dao.pokemon.jpa.pokemonRepository;
-import com.codecool.pokedex.dao.pokemon.util.PokemonContainer;
-import com.codecool.pokedex.model.pokemon.Pokemon;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 public class PokedexApplication {
 	/* If initiated for the first time, uncomment section below to fetch data and save to database!
-		Comment section is database is populated!*/
+		Set ddl in application.properties to create
+
+		Comment section is database is populated!
+		Set ddl in application.properties to none*/
 
 
 	/*@Autowired
