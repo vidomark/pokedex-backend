@@ -1,7 +1,13 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
+@Embeddable
+@Data
 public class AbilitiesItem{
 
 	@SerializedName("is_hidden")
@@ -13,15 +19,8 @@ public class AbilitiesItem{
 	@SerializedName("slot")
 	private int slot;
 
-	public boolean isIsHidden(){
-		return isHidden;
-	}
-
+	@Embedded
 	public Ability getAbility(){
 		return ability;
-	}
-
-	public int getSlot(){
-		return slot;
 	}
 }

@@ -5,21 +5,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PokemonContainer {
+public class PokemonContainer { // for database creation only
 
-    private final String ENDPOINT =  "https://pokeapi.co/api/v2/pokemon?limit=100"; // 100 pokemons
+    private final String ENDPOINT =  "https://pokeapi.co/api/v2/pokemon?limit=200"; // 100 pokemons
     private final JSONObject data = PokemonUtil.fetchData(ENDPOINT);
     private final JSONArray pokemonJsonArray = data.getJSONArray("results");
-    private final Set<Pokemon> pokemons = new LinkedHashSet<>();
+    private final List<Pokemon> pokemons = new ArrayList<>();
 
     public PokemonContainer() throws IOException {
         createPokemons();
     }
 
-    public Set<Pokemon> getPokemons() {
+    public List<Pokemon> getPokemons() {
         return pokemons;
     }
 

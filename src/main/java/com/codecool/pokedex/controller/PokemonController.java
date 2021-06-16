@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -24,33 +25,34 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
+
     @GetMapping
-    public Set<Pokemon> getPokemons() throws IOException {
+    public List<Pokemon> getPokemons() throws IOException {
         return pokemonService.getPokemons();
     }
 
     @GetMapping(path = "pokemon/{id}")
     public Pokemon getPokemon(@PathVariable("id") int id) {
-        return pokemonService.getPokemon(id);
+        return pokemonService.getPokemon(id).orElse(null);
     }
 
     @GetMapping(path = "types")
-    public Set<Type> getTypes() {
+    public List<Type> getTypes() {
         return pokemonService.getTypes();
     }
 
     @GetMapping(path = "abilities")
-    public Set<Ability> getAbilities() {
+    public List<Ability> getAbilities() {
         return pokemonService.getAbilities();
     }
 
     @PostMapping(path = "type/{type}")
-    public Set<Pokemon> getPokemonsByType(@PathVariable("type") String typeName, @RequestBody Type type) {
+    public List<Pokemon> getPokemonsByType(@RequestBody Type type) {
         return pokemonService.getPokemonsByType(type);
     }
 
     @PostMapping(path = "ability/{name}")
-    public Set<Pokemon> getPokemonsByAbility(@PathVariable("name") String abilityName, @RequestBody Ability ability) {
+    public List<Pokemon> getPokemonsByAbility(@RequestBody Ability ability) {
         return pokemonService.getPokemonsByAbility(ability);
     }
 }
