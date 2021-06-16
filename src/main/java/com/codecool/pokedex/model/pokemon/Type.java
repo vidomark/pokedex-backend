@@ -1,9 +1,13 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
+@Embeddable
+@Data
 public class Type{
 
 	@SerializedName("name")

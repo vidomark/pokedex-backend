@@ -3,124 +3,68 @@ package com.codecool.pokedex.model.pokemon;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pokemon {
 
-	@SerializedName("location_area_encounters")
-	private String locationAreaEncounters;
+    @SerializedName("location_area_encounters")
+    private String locationAreaEncounters;
 
-	@SerializedName("types")
-	private List<TypesItem> types;
+    @SerializedName("types")
+    @ElementCollection
+    private List<TypesItem> types;
 
-	@SerializedName("base_experience")
-	private int baseExperience;
+    @SerializedName("base_experience")
+    private int baseExperience;
 
-	@SerializedName("weight")
-	private int weight;
+    @SerializedName("weight")
+    private int weight;
 
-	@SerializedName("is_default")
-	private boolean isDefault;
+    @SerializedName("is_default")
+    private boolean isDefault;
 
-	@SerializedName("sprites")
-	private Sprites sprites;
+    @SerializedName("sprites")
+    @Embedded
+    private Sprites sprites;
 
-	@SerializedName("abilities")
-	private List<AbilitiesItem> abilities;
+    @SerializedName("abilities")
+    @ElementCollection
+    private List<AbilitiesItem> abilities;
 
-	@SerializedName("species")
-	private Species species;
+    @SerializedName("species")
+    @Embedded
+    private Species species;
 
-	@SerializedName("stats")
-	private List<StatsItem> stats;
+    @SerializedName("stats")
+    @ElementCollection
+    private List<StatsItem> stats;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    @Column(insertable = false, updatable = false)
+    private String name;
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    @Id
+    private int id;
 
-	@SerializedName("forms")
-	private List<FormsItem> forms;
+    @SerializedName("forms")
+    @ElementCollection
+    private List<FormsItem> forms;
 
-	@SerializedName("height")
-	private int height;
+    @SerializedName("height")
+    private int height;
 
-	@SerializedName("order")
-	private int order;
-
-	public String getLocationAreaEncounters(){
-		return locationAreaEncounters;
-	}
-
-	public List<TypesItem> getTypes(){
-		return types;
-	}
-
-	public int getBaseExperience(){
-		return baseExperience;
-	}
-
-	public int getWeight(){
-		return weight;
-	}
-
-	public boolean isIsDefault(){
-		return isDefault;
-	}
-
-	public Sprites getSprites(){
-		return sprites;
-	}
-
-	public List<AbilitiesItem> getAbilities(){
-		return abilities;
-	}
-
-	public Species getSpecies(){
-		return species;
-	}
-
-	public List<StatsItem> getStats(){
-		return stats;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-	public int getId(){
-		return id;
-	}
-
-	public List<FormsItem> getForms(){
-		return forms;
-	}
-
-	public int getHeight(){
-		return height;
-	}
-
-	public int getOrder(){
-		return order;
-	}
-
-	@Override
-	public String toString() {
-		return "Pokemon{" +
-				"locationAreaEncounters='" + locationAreaEncounters + '\'' +
-				", types=" + types +
-				", baseExperience=" + baseExperience +
-				", weight=" + weight +
-				", isDefault=" + isDefault +
-				", sprites=" + sprites +
-				", abilities=" + abilities +
-				", species=" + species +
-				", stats=" + stats +
-				", name='" + name + '\'' +
-				", id=" + id +
-				", forms=" + forms +
-				", height=" + height +
-				", order=" + order +
-				'}';
-	}
+    @SerializedName("order")
+    @Transient
+    private int order;
 }

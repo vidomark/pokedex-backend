@@ -1,9 +1,14 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import java.util.Objects;
 
+@Embeddable
+@Data
 public class Stat{
 
 	@SerializedName("name")
@@ -11,14 +16,6 @@ public class Stat{
 
 	@SerializedName("url")
 	private String url;
-
-	public String getName(){
-		return name;
-	}
-
-	public String getUrl(){
-		return url;
-	}
 
 	@Override
 	public boolean equals(Object o) {

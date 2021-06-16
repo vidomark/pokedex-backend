@@ -1,7 +1,13 @@
 package com.codecool.pokedex.model.pokemon;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
+@Embeddable
+@Data
 public class Sprites{
 
 	@SerializedName("back_default")
@@ -11,24 +17,10 @@ public class Sprites{
 	private String frontDefault;
 
 	@SerializedName("back_shiny")
+	@Transient
 	private String backShiny;
 
 	@SerializedName("front_shiny")
+	@Transient
 	private String frontShiny;
-
-	public String getBackDefault(){
-		return backDefault;
-	}
-
-	public String getFrontDefault(){
-		return frontDefault;
-	}
-
-	public String getBackShiny(){
-		return backShiny;
-	}
-
-	public String getFrontShiny(){
-		return frontShiny;
-	}
 }

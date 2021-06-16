@@ -1,51 +1,54 @@
 package com.codecool.pokedex.service;
 
-import com.codecool.pokedex.dao.pokemon.PokemonRepository;
+import com.codecool.pokedex.dao.pokemon.jpa.pokemonRepository;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
-import com.codecool.pokedex.model.pokemon.Stat;
 import com.codecool.pokedex.model.pokemon.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class PokemonService {
 
-    private PokemonRepository pokemonRepository;
-
     @Autowired
-    public PokemonService(PokemonRepository pokemonRepository) {
+    private final pokemonRepository pokemonRepository;
+
+    public PokemonService(pokemonRepository pokemonRepository) {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public Set<Pokemon> getPokemons() {
-        return pokemonRepository.getPokemons();
+    public void savePokemon(Pokemon pokemon) {
+        pokemonRepository.save(pokemon);
     }
 
-    public boolean addPokemon(Pokemon pokemon) {
-        return pokemonRepository.addPokemon(pokemon);
+    public List<Pokemon> getPokemons() {
+        return pokemonRepository.findAll();
     }
 
-    public Pokemon getPokemon(int id) {
-        return pokemonRepository.getPokemon(id);
+    public void addPokemon(Pokemon pokemon) {
+        pokemonRepository.save(pokemon);
     }
 
-    public Set<Pokemon> getPokemonsByType(Type type) {
+    public Optional<Pokemon> getPokemon(int id) {
+        return pokemonRepository.findById(id);
+    }
+
+    public List<Pokemon> getPokemonsByType(Type type) {
         return pokemonRepository.getPokemonsByType(type);
     }
 
-    public Set<Type> getTypes() {
+    public List<Type> getTypes() {
         return pokemonRepository.getTypes();
     }
 
-    public Set<Ability> getAbilities() {
+    public List<Ability> getAbilities() {
         return pokemonRepository.getAbilities();
     }
 
-    public Set<Pokemon> getPokemonsByAbility(Ability ability) {
+    public List<Pokemon> getPokemonsByAbility(Ability ability) {
         return pokemonRepository.getPokemonsByAbility(ability);
     }
-
 }
