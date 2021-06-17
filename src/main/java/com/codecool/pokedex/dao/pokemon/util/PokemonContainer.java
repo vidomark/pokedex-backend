@@ -3,6 +3,7 @@ package com.codecool.pokedex.dao.pokemon.util;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.context.annotation.Profile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class PokemonContainer { // for database creation only
 
-    private int pokemonNumber;
+    private final int pokemonNumber;
     private String endpoint; // 100 pokemons
     private JSONObject data;
     private JSONArray pokemonJsonArray;

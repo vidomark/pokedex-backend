@@ -17,8 +17,6 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@NotNull(message = "Pokemon must be defined!")
-@NotBlank(message = "Pokemon must be defined!")
 public class Pokemon {
 
     @SerializedName("location_area_encounters")
