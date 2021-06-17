@@ -58,8 +58,6 @@ public class Pokemon {
     private String name;
 
     @SerializedName("id")
-    @NotBlank
-    @NotNull
     @Id
     private int id;
 
