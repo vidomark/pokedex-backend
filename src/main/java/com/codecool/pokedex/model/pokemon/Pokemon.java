@@ -9,12 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NotNull(message = "Pokemon must be defined!")
+@NotBlank(message = "Pokemon must be defined!")
 public class Pokemon {
 
     @SerializedName("location_area_encounters")
@@ -54,6 +58,8 @@ public class Pokemon {
     private String name;
 
     @SerializedName("id")
+    @NotBlank
+    @NotNull
     @Id
     private int id;
 

@@ -9,12 +9,14 @@ import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,10 +42,27 @@ class PokemonServiceTest {
     }
 
     @Test
-    void addPokemonInvokesProperly() {
-        Pokemon pokemon = new Pokemon();
-        pokemonService.addPokemon(pokemon);
-        verify(mockRepository).save(pokemon);
+    void addPokemonWithValidPokemon() {
+        Pokemon validPokemon = new Pokemon();
+        pokemonService.addPokemon(validPokemon);
+
+        ArgumentCaptor<Pokemon> argumentCaptor = ArgumentCaptor.forClass(Pokemon.class);
+        verify(mockRepository).save(argumentCaptor.capture());
+
+        Pokemon capturedPokemon = argumentCaptor.getValue();
+        assertThat(capturedPokemon).isEqualTo(validPokemon);
+    }
+
+    @Test
+    void addPokemonWithNullPokemon() {
+        Pokemon invalidPokemon = null;
+        pokemonService.addPokemon(invalidPokemon);
+
+        ArgumentCaptor<Pokemon> argumentCaptor = ArgumentCaptor.forClass(Pokemon.class);
+        verify(mockRepository).save(argumentCaptor.capture());
+
+        Pokemon capturedPokemon = argumentCaptor.getValue();
+        assertThat(capturedPokemon).isEqualTo(invalidPokemon);
     }
 
     @Test

@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -120,6 +122,22 @@ class PokemonRepositoryTest {
         pokemonRepository.save(bulbasaur);
         pokemonRepository.save(pikachu);
         pokemonRepository.save(charizard);
+    }
+
+    @Test
+    void addValidPokemon() {
+        Pokemon validPokemom = new Pokemon();
+        pokemonRepository.save(validPokemom);
+
+        int size = pokemonRepository.findAll().size();
+        int actualSize = 4;
+        assertThat(size).isEqualTo(actualSize);
+    }
+
+    @Test
+    void addInValidPokemon() {
+        Pokemon invalidPokemon = null;
+        assertThrows(InvalidDataAccessApiUsageException.class, () -> pokemonRepository.save(invalidPokemon));
     }
 
     @Test

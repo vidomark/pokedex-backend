@@ -8,6 +8,7 @@ import com.codecool.pokedex.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class PokemonController {
     }
 
     @GetMapping(path = "pokemon/{id}")
-    public Pokemon getPokemon(@PathVariable("id") int id) {
+    public Pokemon getPokemon(@Valid @PathVariable("id") int id) {
         return pokemonService.getPokemon(id).orElse(null);
     }
 
