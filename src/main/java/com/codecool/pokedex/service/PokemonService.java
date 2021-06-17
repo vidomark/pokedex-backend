@@ -20,10 +20,6 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public void savePokemon(Pokemon pokemon) {
-        pokemonRepository.save(pokemon);
-    }
-
     public List<Pokemon> getPokemons() {
         return pokemonRepository.findAll();
     }
