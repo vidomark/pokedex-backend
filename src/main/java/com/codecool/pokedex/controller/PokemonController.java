@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import static com.codecool.pokedex.PokedexApplication.POKEMON_NUMBER;
 
@@ -43,7 +40,6 @@ public class PokemonController {
     public Pokemon getPokemon(@PathVariable("id")
                                               @Min(1)
                                               @Max(POKEMON_NUMBER)
-                                              @NotBlank
                                               @NotNull int id) {
         return pokemonService.getPokemon(id).orElse(null);
     }
@@ -59,12 +55,12 @@ public class PokemonController {
     }
 
     @PostMapping(path = "type/{type}")
-    public List<Pokemon> getPokemonsByType(@RequestBody @NotNull @NotBlank Type type) {
+    public List<Pokemon> getPokemonsByType(@RequestBody @NotNull Type type) {
         return pokemonService.getPokemonsByType(type);
     }
 
     @PostMapping(path = "ability/{name}")
-    public List<Pokemon> getPokemonsByAbility(@RequestBody @NotNull @NotBlank Ability ability) {
+    public List<Pokemon> getPokemonsByAbility(@RequestBody @NotNull Ability ability) {
         return pokemonService.getPokemonsByAbility(ability);
     }
 }

@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +24,9 @@ import static org.mockito.Mockito.when;
 
 @DataJpaTest
 @ActiveProfiles("test")
-@ExtendWith(MockitoExtension.class)
 class PokemonServiceTest {
 
-    @Mock
+    @MockBean
     private PokemonRepository mockRepository;
     private PokemonService pokemonService;
 
