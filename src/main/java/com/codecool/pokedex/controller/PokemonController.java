@@ -18,9 +18,9 @@ import java.util.List;
 import static com.codecool.pokedex.PokedexApplication.POKEMON_NUMBER;
 
 @RestController
-@RequestMapping("/")
-@CrossOrigin("*")
+@RequestMapping("/pokemon")
 @Validated
+@CrossOrigin("*")
 public class PokemonController {
 
     private final PokemonService pokemonService;
@@ -30,13 +30,12 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
-
-    @GetMapping
+    @GetMapping()
     public List<Pokemon> getPokemons() throws IOException {
         return pokemonService.getPokemons();
     }
 
-    @GetMapping(path = "pokemon/{id}")
+    @GetMapping(path = "{id}")
     public Pokemon getPokemon(@PathVariable("id")
                                               @Min(1)
                                               @Max(POKEMON_NUMBER)
@@ -54,13 +53,13 @@ public class PokemonController {
         return pokemonService.getAbilities();
     }
 
-    @PostMapping(path = "type/{type}")
-    public List<Pokemon> getPokemonsByType(@RequestBody @NotNull Type type) {
+    @PostMapping(params = "typeName")
+    public List<Pokemon> getPokemonsByType(@RequestParam String typeName, @RequestBody @NotNull Type type) {
         return pokemonService.getPokemonsByType(type);
     }
 
-    @PostMapping(path = "ability/{name}")
-    public List<Pokemon> getPokemonsByAbility(@RequestBody @NotNull Ability ability) {
+    @PostMapping(params = "abilityName")
+    public List<Pokemon> getPokemonsByAbility(@RequestParam String abilityName, @RequestBody @NotNull Ability ability) {
         return pokemonService.getPokemonsByAbility(ability);
     }
 }
