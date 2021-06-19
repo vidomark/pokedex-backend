@@ -30,7 +30,8 @@ class PokemonServiceTest {
 
     @Test
     void getPokemonsInvokesProperly() {
-        pokemonService.getPokemons();
+        int limit = 5;
+        pokemonService.getPokemons(limit);
         verify(mockRepository).findAll();
     }
 

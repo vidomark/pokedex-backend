@@ -144,8 +144,9 @@ class PokemonControllerTest {
     @Test
     void getPokemonsInvokesService() {
         List<Pokemon> pokemons = new ArrayList<>();
-        doReturn(pokemons).when(pokemonService).getPokemons();
-        assertEquals(pokemons, pokemonService.getPokemons());
+        int limit = 5;
+        doReturn(pokemons).when(pokemonService).getPokemons(limit);
+        assertEquals(pokemons, pokemonService.getPokemons(limit));
     }
 
     @Test
