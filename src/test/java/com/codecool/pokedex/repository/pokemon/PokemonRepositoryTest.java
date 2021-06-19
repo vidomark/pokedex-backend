@@ -1,6 +1,5 @@
-package com.codecool.pokedex.repository.pokemon.jpa;
+package com.codecool.pokedex.repository.pokemon;
 
-import com.codecool.pokedex.repository.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
