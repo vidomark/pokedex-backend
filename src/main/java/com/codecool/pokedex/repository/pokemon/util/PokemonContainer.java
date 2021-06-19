@@ -1,9 +1,8 @@
-package com.codecool.pokedex.dao.pokemon.util;
+package com.codecool.pokedex.repository.pokemon.util;
 
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.context.annotation.Profile;
 
 import java.io.IOException;
 import java.util.ArrayList;
