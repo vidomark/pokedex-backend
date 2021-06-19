@@ -1,24 +1,14 @@
-package com.codecool.pokedex.dao.pokemon.jpa;
+package com.codecool.pokedex.repository.pokemon.jpa;
 
-import com.codecool.pokedex.dao.pokemon.PokemonRepository;
-import com.codecool.pokedex.dao.pokemon.util.PokemonContainer;
+import com.codecool.pokedex.repository.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.*;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.swing.text.html.Option;
-import java.io.IOException;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;

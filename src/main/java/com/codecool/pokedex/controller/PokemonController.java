@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -54,12 +53,12 @@ public class PokemonController {
     }
 
     @PostMapping(params = "typeName")
-    public List<Pokemon> getPokemonsByType(@RequestParam String typeName, @RequestBody @NotNull Type type) {
+    public List<Pokemon> getPokemonsByType(@RequestBody @NotNull Type type) {
         return pokemonService.getPokemonsByType(type);
     }
 
     @PostMapping(params = "abilityName")
-    public List<Pokemon> getPokemonsByAbility(@RequestParam String abilityName, @RequestBody @NotNull Ability ability) {
+    public List<Pokemon> getPokemonsByAbility(@RequestBody @NotNull Ability ability) {
         return pokemonService.getPokemonsByAbility(ability);
     }
 }
