@@ -27,13 +27,13 @@ public class Pokemon {
     private List<TypesItem> types;
 
     @SerializedName("base_experience")
-    private int baseExperience;
+    private Integer baseExperience;
 
     @SerializedName("weight")
-    private int weight;
+    private Integer weight;
 
     @SerializedName("is_default")
-    private boolean isDefault;
+    private Boolean isDefault;
 
     @SerializedName("sprites")
     @Embedded
@@ -57,16 +57,16 @@ public class Pokemon {
 
     @SerializedName("id")
     @Id
-    private int id;
+    private Integer id;
 
     @SerializedName("forms")
     @ElementCollection
     private List<FormsItem> forms;
 
     @SerializedName("height")
-    private int height;
+    private Integer height;
 
     @SerializedName("order")
     @Transient
-    private int order;
+    private Integer order;
 }

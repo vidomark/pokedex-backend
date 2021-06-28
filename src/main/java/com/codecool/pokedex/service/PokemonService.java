@@ -21,7 +21,7 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public List<Pokemon> getPokemons(int limit) {
+    public List<Pokemon> getPokemons(Integer limit) {
         return pokemonRepository.findAll(PageRequest.of(0, limit)).toList();
     }
 
@@ -29,7 +29,7 @@ public class PokemonService {
         pokemonRepository.save(pokemon);
     }
 
-    public Optional<Pokemon> getPokemon(int id) {
+    public Optional<Pokemon> getPokemon(Integer id) {
         return pokemonRepository.findById(id);
     }
 

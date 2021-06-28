@@ -8,8 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @Profile("test")
-@EnableJpaRepositories(basePackages = "com.codecool.pokedex.")
+@EnableJpaRepositories(basePackages = "com.codecool.pokedex.repository")
 @PropertySource("classpath:/application-test.properties")
 @EnableTransactionManagement
-public class TestDatabaseConfig {
-}
+public class TestDatabaseConfig {}

@@ -11,6 +11,11 @@
       "name": "pokemon.load",
       "type": "java.lang.Boolean",
       "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfig"
+    },
+    {
+      "name": "pokemon.number",
+      "type": "java.lang.Integer",
+      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfig"
     }
   ],
   "hints": []

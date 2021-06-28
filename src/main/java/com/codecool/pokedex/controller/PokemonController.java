@@ -1,5 +1,6 @@
 package com.codecool.pokedex.controller;
 
+import com.codecool.pokedex.config.PokemonLoaderConfig;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;
@@ -13,8 +14,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.List;
-
-import static com.codecool.pokedex.PokedexApplication.POKEMON_NUMBER;
 
 @RestController
 @RequestMapping("/pokemon")
@@ -30,15 +29,14 @@ public class PokemonController {
     }
 
     @GetMapping(params = "limit")
-    public List<Pokemon> getPokemons(@RequestParam int limit) throws IOException {
+    public List<Pokemon> getPokemons(@RequestParam Integer limit) throws IOException {
         return pokemonService.getPokemons(limit);
     }
 
     @GetMapping(path = "{id}")
     public Pokemon getPokemon(@PathVariable("id")
                                               @Min(1)
-                                              @Max(POKEMON_NUMBER)
-                                              @NotNull int id) {
+                                              @NotNull Integer id) {
         return pokemonService.getPokemon(id).orElse(null);
     }
 

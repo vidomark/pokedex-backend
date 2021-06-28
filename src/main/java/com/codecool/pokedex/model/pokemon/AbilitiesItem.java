@@ -17,13 +17,13 @@ import javax.persistence.Embedded;
 public class AbilitiesItem{
 
 	@SerializedName("is_hidden")
-	private boolean isHidden;
+	private Boolean isHidden;
 
 	@SerializedName("ability")
 	private Ability ability;
 
 	@SerializedName("slot")
-	private int slot;
+	private Integer slot;
 
 	@Embedded
 	public Ability getAbility(){

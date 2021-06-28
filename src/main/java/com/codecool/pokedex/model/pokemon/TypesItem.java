@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 public class TypesItem{
 
 	@SerializedName("slot")
-	private int slot;
+	private Integer slot;
 
 	@SerializedName("type")
 	@Embedded

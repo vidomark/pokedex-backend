@@ -17,22 +17,20 @@ import java.util.List;
 @EnableConfigurationProperties(value = PokemonLoaderConfig.class)
 public class PokedexApplication {
 
-	@Autowired
 	private final PokemonRepository pokemonRepository;
-
-	@Autowired
 	private final PokemonLoaderConfig pokemonLoaderConfig;
 
-	public static final int POKEMON_NUMBER = 200;
-
+	@Autowired
 	public PokedexApplication(PokemonRepository pokemonRepository, PokemonLoaderConfig pokemonLoaderConfig) throws IOException {
 		this.pokemonRepository = pokemonRepository;
 		this.pokemonLoaderConfig = pokemonLoaderConfig;
-		int currentPokemonNumber = pokemonRepository.findAll().size();
-		boolean loadPokemons = pokemonLoaderConfig.getLoad(); // on test it's false
+
+		Integer currentPokemonNumber = pokemonRepository.findAll().size();
+		Integer numberOfPokemons = pokemonLoaderConfig.getNumber();
+		Boolean loadPokemons = pokemonLoaderConfig.getLoad(); // on test it's false
 
 		if (currentPokemonNumber <= 0 && loadPokemons) { // if database is empty
-			PokemonContainer pokemonContainer = new PokemonContainer(POKEMON_NUMBER);
+			PokemonContainer pokemonContainer = new PokemonContainer(numberOfPokemons);
 			List<Pokemon> pokemons = pokemonContainer.getPokemons();
 			pokemonRepository.saveAll(pokemons);
 		}
