@@ -55,13 +55,13 @@ public class PokemonController {
         return pokemonService.getAbilities();
     }
 
-    @PostMapping(params = "typeName")
-    public List<Pokemon> getPokemonsByType(@RequestParam String typeName, @RequestBody @NotNull Type type) {
+    @PostMapping(params = "type")
+    public List<Pokemon> getPokemonsByType(@RequestBody @NotNull Type type) {
         return pokemonService.getPokemonsByType(type);
     }
 
-    @PostMapping(params = "abilityName")
-    public List<Pokemon> getPokemonsByAbility(@RequestParam String abilityName, @RequestBody @NotNull Ability ability) {
+    @PostMapping(params = "ability")
+    public List<Pokemon> getPokemonsByAbility(@RequestBody @NotNull Ability ability) {
         return pokemonService.getPokemonsByAbility(ability);
     }
 }
