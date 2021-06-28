@@ -1,5 +1,6 @@
 package com.codecool.pokedex.model.user;
 
+import com.codecool.pokedex.service.registration.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -28,8 +30,12 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
+    private String firstName;
+    private String lastName;
     private Boolean locked;
     private Boolean enabled;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<ConfirmationToken> confirmationTokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
