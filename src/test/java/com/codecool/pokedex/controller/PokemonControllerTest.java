@@ -1,6 +1,6 @@
 package com.codecool.pokedex.controller;
 
-import com.codecool.pokedex.repository.pokemon.PokemonRepository;
+import com.codecool.pokedex.repository.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;

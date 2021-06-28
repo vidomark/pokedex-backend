@@ -1,7 +1,7 @@
 package com.codecool.pokedex.repository.pokemon.jpa;
 
-import com.codecool.pokedex.repository.pokemon.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.*;
+import com.codecool.pokedex.repository.PokemonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

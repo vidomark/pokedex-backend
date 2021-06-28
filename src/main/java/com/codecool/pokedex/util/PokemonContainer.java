@@ -1,4 +1,4 @@
-package com.codecool.pokedex.repository.pokemon.util;
+package com.codecool.pokedex.util;
 
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import org.json.JSONArray;
@@ -19,7 +19,7 @@ public class PokemonContainer { // for database creation only
     public PokemonContainer(int pokemonNumber) throws IOException {
         this.pokemonNumber = pokemonNumber;
         this.endpoint = String.format( "https://pokeapi.co/api/v2/pokemon?limit=%s", pokemonNumber);
-        this.data = PokemonUtil.fetchData(endpoint);
+        this.data = UrlReader.fetchData(endpoint);
         this.pokemonJsonArray =  data.getJSONArray("results");
         createPokemons();
     }
@@ -33,7 +33,7 @@ public class PokemonContainer { // for database creation only
             JSONObject pokemonJson = (JSONObject) pokemonData;
             String pokemonUrl = pokemonJson.getString("url");
             try {
-                Pokemon pokemon = PokemonUtil.fetchPokemon(pokemonUrl);
+                Pokemon pokemon = UrlReader.fetchPokemon(pokemonUrl);
                 pokemons.add(pokemon);
             } catch (IOException exception) {
                 exception.printStackTrace();

@@ -1,4 +1,4 @@
-package com.codecool.pokedex.repository.pokemon;
+package com.codecool.pokedex.repository;
 
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;

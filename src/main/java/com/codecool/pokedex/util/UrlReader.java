@@ -1,4 +1,4 @@
-package com.codecool.pokedex.repository.pokemon.util;
+package com.codecool.pokedex.util;
 
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.google.gson.Gson;
@@ -12,7 +12,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
-public class PokemonUtil {
+public class UrlReader {
 
     public static JSONObject fetchData(String endpoint) throws IOException {
         String jsonString = getJsonString(endpoint);

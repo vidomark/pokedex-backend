@@ -1,9 +1,9 @@
 package com.codecool.pokedex;
 
 import com.codecool.pokedex.config.PokemonLoaderConfig;
-import com.codecool.pokedex.repository.pokemon.PokemonRepository;
-import com.codecool.pokedex.repository.pokemon.util.PokemonContainer;
+import com.codecool.pokedex.repository.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Pokemon;
+import com.codecool.pokedex.util.PokemonContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
