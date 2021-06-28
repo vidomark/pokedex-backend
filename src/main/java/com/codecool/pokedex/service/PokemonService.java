@@ -5,8 +5,11 @@ import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +23,8 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public List<Pokemon> getPokemons() {
-        return pokemonRepository.findAll();
+    public List<Pokemon> getPokemons(int limit) {
+        return pokemonRepository.findAll(PageRequest.of(0, limit)).toList();
     }
 
     public void addPokemon(Pokemon pokemon) {
