@@ -1,4 +1,4 @@
-package com.codecool.pokedex.service.registration;
+package com.codecool.pokedex.model.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

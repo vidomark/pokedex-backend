@@ -2,7 +2,7 @@ package com.codecool.pokedex.service;
 
 import com.codecool.pokedex.model.user.User;
 import com.codecool.pokedex.repository.UserRepository;
-import com.codecool.pokedex.service.registration.ConfirmationToken;
+import com.codecool.pokedex.model.registration.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -47,9 +47,9 @@ public class UserService implements UserDetailsService {
 
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = ConfirmationToken.builder()
-                .token(UUID.randomUUID().toString())
+                .token(token)
                 .issuedAt(LocalDateTime.now())
-                .expriesAt(LocalDateTime.now().plusMinutes(15))
+                .expiresAt(LocalDateTime.now().plusMinutes(15))
                 .user(user)
                 .build();
         confirmationTokenService.saveConfirmationToken(confirmationToken);

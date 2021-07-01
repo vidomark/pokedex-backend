@@ -1,6 +1,6 @@
 package com.codecool.pokedex.repository;
 
-import com.codecool.pokedex.service.registration.ConfirmationToken;
+import com.codecool.pokedex.model.registration.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

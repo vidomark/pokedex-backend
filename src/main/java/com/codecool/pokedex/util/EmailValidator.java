@@ -4,13 +4,10 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import java.util.function.Predicate;
 
-@Service
-public class EmailValidator implements Predicate<String> {
+public class EmailValidator {
 
-    @Override
-    public boolean test(String email) {
+    public static boolean valid(String email) {
         try {
             InternetAddress emailAddress = new InternetAddress(email);
             emailAddress.validate();

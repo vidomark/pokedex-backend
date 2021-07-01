@@ -1,7 +1,7 @@
 package com.codecool.pokedex.service;
 
 import com.codecool.pokedex.repository.ConfirmationTokenRepository;
-import com.codecool.pokedex.service.registration.ConfirmationToken;
+import com.codecool.pokedex.model.registration.ConfirmationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

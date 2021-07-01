@@ -1,4 +1,4 @@
-package com.codecool.pokedex.service.registration;
+package com.codecool.pokedex.model.registration;
 
 import com.codecool.pokedex.model.user.User;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ConfirmationToken {
+public class ConfirmationToken { // TODO: DTO read/implementation
 
     @Id
     @GeneratedValue
@@ -27,7 +27,7 @@ public class ConfirmationToken {
     private LocalDateTime issuedAt;
 
     @Column(nullable = false)
-    private LocalDateTime expriesAt;
+    private LocalDateTime expiresAt;
 
     private LocalDateTime confirmedAt;
 

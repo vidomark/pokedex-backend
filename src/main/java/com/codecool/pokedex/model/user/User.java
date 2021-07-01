@@ -1,6 +1,6 @@
 package com.codecool.pokedex.model.user;
 
-import com.codecool.pokedex.service.registration.ConfirmationToken;
+import com.codecool.pokedex.model.registration.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
