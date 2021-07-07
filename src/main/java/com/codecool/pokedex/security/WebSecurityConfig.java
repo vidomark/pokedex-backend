@@ -1,5 +1,7 @@
-package com.codecool.pokedex.security.config;
+package com.codecool.pokedex.security;
 
+import com.codecool.pokedex.jwt.JwtAuthenticationFilter;
+import com.codecool.pokedex.jwt.JwtConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,17 +14,23 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.crypto.SecretKey;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
+    private final SecretKey secretKey;
+    private final JwtConfig jwtConfig;
 
     @Autowired
-    public WebSecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+    public WebSecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, SecretKey secretKey, JwtConfig jwtConfig) {
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
+        this.secretKey = secretKey;
+        this.jwtConfig = jwtConfig;
     }
 
     @Override
@@ -31,11 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), secretKey, jwtConfig))
                 .authorizeRequests()
                     .antMatchers("/registration/**").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                .formLogin();
+                    .antMatchers("/login/**").permitAll()
+                    .anyRequest().authenticated();
     }
 
     @Override

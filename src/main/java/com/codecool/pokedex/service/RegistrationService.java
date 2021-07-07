@@ -3,7 +3,7 @@ package com.codecool.pokedex.service;
 import com.codecool.pokedex.model.email.EmailSender;
 import com.codecool.pokedex.model.user.User;
 import com.codecool.pokedex.model.registration.ConfirmationToken;
-import com.codecool.pokedex.model.registration.RegistrationRequest;
+import com.codecool.pokedex.model.dto.RegistrationRequest;
 import com.codecool.pokedex.util.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +39,6 @@ public class RegistrationService {
                         .email(request.getEmail())
                         .username(request.getUsername())
                         .password(request.getPassword())
-                        .firstName(request.getFirstName())
-                        .lastName(request.getLastName())
                         .enabled(false)
                         .locked(false)
                         .role(USER)
@@ -48,7 +46,7 @@ public class RegistrationService {
         );
 
         String link = "http://localhost:8080/registration/confirm?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
+        emailSender.send(request.getEmail(), buildEmail(request.getUsername(), link));
 
         return token;
     }

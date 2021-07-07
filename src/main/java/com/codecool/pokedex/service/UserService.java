@@ -17,8 +17,8 @@ import java.util.UUID;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final ConfirmationTokenService confirmationTokenService;
     private final PasswordEncoder passwordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
 
     @Autowired
     public UserService(UserRepository userRepository, ConfirmationTokenService confirmationTokenService, PasswordEncoder passwordEncoder) {
