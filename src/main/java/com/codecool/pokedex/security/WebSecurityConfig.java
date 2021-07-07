@@ -2,6 +2,7 @@ package com.codecool.pokedex.security;
 
 import com.codecool.pokedex.jwt.JwtAuthenticationFilter;
 import com.codecool.pokedex.jwt.JwtConfig;
+import com.codecool.pokedex.jwt.JwtTokenVerifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/registration/**").permitAll()
                     .antMatchers("/login/**").permitAll()
-                    .anyRequest().authenticated();
+                    .anyRequest().authenticated()
+                .and()
+                .addFilterAfter(new JwtTokenVerifier(jwtConfig, secretKey), JwtAuthenticationFilter.class);
     }
 
     @Override
