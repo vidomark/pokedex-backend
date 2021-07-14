@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Embeddable
 public class Pokemon {
 
     @SerializedName("location_area_encounters")

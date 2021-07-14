@@ -1,5 +1,6 @@
-package com.codecool.pokedex.jwt;
+package com.codecool.pokedex.security.filter;
 
+import com.codecool.pokedex.config.JwtConfiguration;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -7,8 +8,8 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
@@ -17,20 +18,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-public class JwtTokenVerifier extends OncePerRequestFilter {
+@Component
+public class JwtTokenVerifierFilter extends OncePerRequestFilter {
 
-    private final JwtConfig jwtConfig;
+    private final JwtConfiguration jwtConfiguration;
     private final SecretKey secretKey;
 
     @Autowired
-    public JwtTokenVerifier(JwtConfig jwtConfig, SecretKey secretKey) {
-        this.jwtConfig = jwtConfig;
+    public JwtTokenVerifierFilter(JwtConfiguration jwtConfiguration, SecretKey secretKey) {
+        this.jwtConfiguration = jwtConfiguration;
         this.secretKey = secretKey;
     }
 
@@ -38,12 +35,12 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
 
-        if (authorizationHeader == null || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith(jwtConfiguration.getTokenPrefix())) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), ""); // get token without Bearer
+        String token = authorizationHeader.replace(jwtConfiguration.getTokenPrefix(), ""); // get token without Bearer
         try {
             Jws<Claims> claims = Jwts.parser()
                     .setSigningKey(secretKey)

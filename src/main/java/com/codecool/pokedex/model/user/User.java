@@ -1,18 +1,14 @@
 package com.codecool.pokedex.model.user;
 
+import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.registration.ConfirmationToken;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -20,46 +16,26 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements UserDetails {
+public class User  {
 
     @Id
     @GeneratedValue
     private Integer id;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
     private String username;
+
     private String email;
+
     private String password;
-    private String firstName;
-    private String lastName;
-    private Boolean locked;
-    private Boolean enabled;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Pokemon> pokemons = new ArrayList<>();
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<ConfirmationToken> confirmationTokens;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
-        return Collections.singletonList(authority);
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
 }

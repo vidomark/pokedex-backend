@@ -39,8 +39,6 @@ public class RegistrationService {
                         .email(request.getEmail())
                         .username(request.getUsername())
                         .password(request.getPassword())
-                        .enabled(false)
-                        .locked(false)
                         .role(USER)
                         .build()
         );
@@ -65,7 +63,7 @@ public class RegistrationService {
             throw new IllegalStateException("Token expired");
 
         confirmationTokenService.setConfirmedAt(token);
-        userService.enableUser(confirmationToken.getUser().getId());
+        userService.enableUser(confirmationToken.getUser().getUsername());
         return "confirmed";
     }
 

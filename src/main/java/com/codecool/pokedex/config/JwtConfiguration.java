@@ -1,4 +1,4 @@
-package com.codecool.pokedex.jwt;
+package com.codecool.pokedex.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,11 +8,11 @@ import org.springframework.http.HttpHeaders;
 @Configuration
 @ConfigurationProperties("application.jwt")
 @Data
-public class JwtConfig {
+public class JwtConfiguration {
 
-    private int expirationDays;
+    private Integer expirationDays;
     private String secretKey;
     private String tokenPrefix;
 
-    protected String getAuthorizationHeader() {return HttpHeaders.AUTHORIZATION;}
+    public String getAuthorizationHeader() {return HttpHeaders.AUTHORIZATION;}
 }

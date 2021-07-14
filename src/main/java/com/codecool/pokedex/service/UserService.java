@@ -1,5 +1,6 @@
 package com.codecool.pokedex.service;
 
+import com.codecool.pokedex.model.user.SecurityUser;
 import com.codecool.pokedex.model.user.User;
 import com.codecool.pokedex.repository.UserRepository;
 import com.codecool.pokedex.model.registration.ConfirmationToken;
@@ -29,8 +30,9 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email %s not found", username)));
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username: %s not found", username)));
+        return new SecurityUser(user);
     }
 
     public String signUpUser(User user) {
@@ -43,6 +45,7 @@ public class UserService implements UserDetailsService {
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
+
         userRepository.save(user);
 
         String token = UUID.randomUUID().toString();
@@ -52,12 +55,13 @@ public class UserService implements UserDetailsService {
                 .expiresAt(LocalDateTime.now().plusMinutes(15))
                 .user(user)
                 .build();
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
 
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
     }
 
-    public void enableUser(int id) {
-        userRepository.enableUser(id);
+    public void enableUser(String username) {
+        SecurityUser securityUser = (SecurityUser) loadUserByUsername(username);
+        securityUser.setIsEnabled(true);
     }
 }

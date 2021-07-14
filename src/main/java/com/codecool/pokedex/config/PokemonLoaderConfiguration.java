@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties("pokemon")
-public class PokemonLoaderConfig {
+public class PokemonLoaderConfiguration {
 
     private Boolean load;
 
@@ -16,12 +16,12 @@ public class PokemonLoaderConfig {
         return load;
     }
 
-    public void setLoad(boolean load) {
-        this.load = load;
-    }
-
     public Integer getNumber() {
         return number;
+    }
+
+    public void setLoad(boolean load) {
+        this.load = load;
     }
 
     public void setNumber(int number) {

@@ -1,6 +1,6 @@
 package com.codecool.pokedex;
 
-import com.codecool.pokedex.config.PokemonLoaderConfig;
+import com.codecool.pokedex.config.PokemonLoaderConfiguration;
 import com.codecool.pokedex.repository.PokemonRepository;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.util.PokemonContainer;
@@ -14,20 +14,20 @@ import java.util.List;
 
 
 @SpringBootApplication
-@EnableConfigurationProperties(value = PokemonLoaderConfig.class)
+@EnableConfigurationProperties(PokemonLoaderConfiguration.class)
 public class PokedexApplication {
 
 	private final PokemonRepository pokemonRepository;
-	private final PokemonLoaderConfig pokemonLoaderConfig;
+	private final PokemonLoaderConfiguration pokemonLoaderConfiguration;
 
 	@Autowired
-	public PokedexApplication(PokemonRepository pokemonRepository, PokemonLoaderConfig pokemonLoaderConfig) throws IOException {
+	public PokedexApplication(PokemonRepository pokemonRepository, PokemonLoaderConfiguration pokemonLoaderConfiguration) throws IOException {
 		this.pokemonRepository = pokemonRepository;
-		this.pokemonLoaderConfig = pokemonLoaderConfig;
+		this.pokemonLoaderConfiguration = pokemonLoaderConfiguration;
 
 		Integer currentPokemonNumber = pokemonRepository.findAll().size();
-		Integer numberOfPokemons = pokemonLoaderConfig.getNumber();
-		Boolean loadPokemons = pokemonLoaderConfig.getLoad(); // on test it's false
+		Integer numberOfPokemons = pokemonLoaderConfiguration.getNumber();
+		Boolean loadPokemons = pokemonLoaderConfiguration.getLoad(); // on test it's false
 
 		if (currentPokemonNumber <= 0 && loadPokemons) { // if database is empty
 			PokemonContainer pokemonContainer = new PokemonContainer(numberOfPokemons);

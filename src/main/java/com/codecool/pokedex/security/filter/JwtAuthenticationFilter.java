@@ -1,5 +1,6 @@
-package com.codecool.pokedex.jwt;
+package com.codecool.pokedex.security.filter;
 
+import com.codecool.pokedex.config.JwtConfiguration;
 import com.codecool.pokedex.model.dto.LoginRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -10,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
@@ -24,13 +26,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private final AuthenticationManager authenticationManager;
     private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
+    private final JwtConfiguration jwtConfiguration;
 
-    @Autowired
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, SecretKey secretKey, JwtConfig jwtConfig) {
-        this.authenticationManager = authenticationManager;
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, SecretKey secretKey, JwtConfiguration jwtConfiguration) {
         this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
+        this.jwtConfiguration = jwtConfiguration;
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             );
             return authenticationManager.authenticate(authentication);
         } catch (IOException e) {
-            throw new RuntimeException("Authentication failure");
+            throw new RuntimeException("Authentication failure!");
         }
     }
 
@@ -52,10 +53,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = Jwts.builder()
                 .setSubject(authResult.getName())
                 .setIssuedAt(new Date())
-                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfig.getExpirationDays())))
+                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfiguration.getExpirationDays())))
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
 
-        response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + token);
+        response.addHeader(jwtConfiguration.getAuthorizationHeader(), jwtConfiguration.getTokenPrefix() + token);
     }
 }

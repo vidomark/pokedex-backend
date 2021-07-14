@@ -1,6 +1,6 @@
 package com.codecool.pokedex.controller;
 
-import com.codecool.pokedex.config.PokemonLoaderConfig;
+import com.codecool.pokedex.config.PokemonLoaderConfiguration;
 import com.codecool.pokedex.model.pokemon.Ability;
 import com.codecool.pokedex.model.pokemon.Pokemon;
 import com.codecool.pokedex.model.pokemon.Type;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
