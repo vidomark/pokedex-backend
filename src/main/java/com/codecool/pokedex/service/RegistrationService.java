@@ -6,6 +6,7 @@ import com.codecool.pokedex.model.registration.ConfirmationToken;
 import com.codecool.pokedex.model.dto.RegistrationRequest;
 import com.codecool.pokedex.util.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -33,6 +34,9 @@ public class RegistrationService {
 
         if (!validEmail)
             throw new IllegalStateException(String.format("Invalid email: %s", request.getEmail()));
+
+        if (!request.getPassword().equals(request.getConfirmPassword()))
+            throw new IllegalStateException("Password and confirm password must be identical!");
 
         String token = userService.signUpUser(
                 User.builder()

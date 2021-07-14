@@ -22,17 +22,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
+@Component
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final AuthenticationManager authenticationManager;
-    private final SecretKey secretKey;
-    private final JwtConfiguration jwtConfiguration;
-
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, SecretKey secretKey, JwtConfiguration jwtConfiguration) {
-        this.secretKey = secretKey;
-        this.jwtConfiguration = jwtConfiguration;
-        this.authenticationManager = authenticationManager;
-    }
+    // Field injection to avoid circular dependency
+    @Autowired private AuthenticationManager authenticationManager;
+    @Autowired private SecretKey secretKey;
+    @Autowired private JwtConfiguration jwtConfiguration;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -58,5 +54,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .compact();
 
         response.addHeader(jwtConfiguration.getAuthorizationHeader(), jwtConfiguration.getTokenPrefix() + token);
+    }
+
+    @Override
+    @Autowired
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        super.setAuthenticationManager(authenticationManager);
     }
 }

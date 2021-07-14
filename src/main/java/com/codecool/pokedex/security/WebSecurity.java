@@ -1,41 +1,31 @@
 package com.codecool.pokedex.security;
 
 import com.codecool.pokedex.security.filter.JwtAuthenticationFilter;
-import com.codecool.pokedex.config.JwtConfiguration;
 import com.codecool.pokedex.security.filter.JwtTokenVerifierFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import javax.crypto.SecretKey;
-import java.util.Arrays;
-import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-    private final SecretKey secretKey;
     private final AuthenticationProvider authenticationProvider;
-    private final JwtConfiguration jwtConfiguration;
     private final JwtTokenVerifierFilter tokenVerifierFilter;
+    private final JwtAuthenticationFilter authenticationFilter;
 
     @Autowired
-    public WebSecurity(AuthenticationProvider authenticationProvider, SecretKey secretKey, JwtTokenVerifierFilter tokenVerifierFilter, JwtConfiguration jwtConfiguration) throws Exception {
+    public WebSecurity(AuthenticationProvider authenticationProvider, JwtTokenVerifierFilter tokenVerifierFilter, JwtAuthenticationFilter authenticationFilter) throws Exception {
         this.authenticationProvider = authenticationProvider;
         this.tokenVerifierFilter = tokenVerifierFilter;
-        this.jwtConfiguration = jwtConfiguration;
-        this.secretKey = secretKey;
+        this.authenticationFilter = authenticationFilter;
     }
 
     @Override
@@ -46,7 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), secretKey, jwtConfiguration))
+                .addFilter(authenticationFilter)
                 .authorizeRequests()
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/login/**").permitAll()
@@ -59,5 +49,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider);
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
