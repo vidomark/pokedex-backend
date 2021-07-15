@@ -43,6 +43,7 @@ public class RegistrationService {
                         .email(request.getEmail())
                         .username(request.getUsername())
                         .password(request.getPassword())
+                        .isEnabled(false)
                         .role(USER)
                         .build()
         );

@@ -61,7 +61,8 @@ public class UserService implements UserDetailsService {
     }
 
     public void enableUser(String username) {
-        SecurityUser securityUser = (SecurityUser) loadUserByUsername(username);
-        securityUser.setIsEnabled(true);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username: % not found", username)));
+        user.setIsEnabled(true);
     }
 }

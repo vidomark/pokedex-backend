@@ -15,10 +15,11 @@ public class SecurityUser implements UserDetails {
     private Boolean isAccountNonExpired = true;
     private Boolean isAccountNonLocked = true;
     private Boolean isCredentialsNonExpired = true;
-    private Boolean isEnabled = true;
+    private Boolean isEnabled;
 
     public SecurityUser(User user) {
         this.user = user;
+        this.isEnabled = user.getIsEnabled();
     }
 
     @Override
@@ -54,6 +55,6 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isEnabled;
+        return user.getIsEnabled();
     }
 }

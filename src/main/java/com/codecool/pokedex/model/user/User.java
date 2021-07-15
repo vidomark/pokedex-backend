@@ -31,6 +31,8 @@ public class User  {
 
     private String password;
 
+    private Boolean isEnabled;
+
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Pokemon> pokemons = new ArrayList<>();
 
