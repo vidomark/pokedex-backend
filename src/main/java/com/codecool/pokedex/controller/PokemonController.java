@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokemon")
 @Validated
-@CrossOrigin("*")
 public class PokemonController {
 
     private final PokemonService pokemonService;

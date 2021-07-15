@@ -1,7 +1,7 @@
 package com.codecool.pokedex.security;
 
+import com.codecool.pokedex.security.filter.LoginAuthenticationFilter;
 import com.codecool.pokedex.security.filter.JwtAuthenticationFilter;
-import com.codecool.pokedex.security.filter.JwtTokenVerifierFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +18,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationProvider authenticationProvider;
-    private final JwtTokenVerifierFilter tokenVerifierFilter;
-    private final JwtAuthenticationFilter authenticationFilter;
+    private final JwtAuthenticationFilter tokenVerifierFilter;
+    private final LoginAuthenticationFilter loginAuthenticationFilter;
 
     @Autowired
-    public WebSecurity(AuthenticationProvider authenticationProvider, JwtTokenVerifierFilter tokenVerifierFilter, JwtAuthenticationFilter authenticationFilter) throws Exception {
+    public WebSecurity(AuthenticationProvider authenticationProvider, JwtAuthenticationFilter tokenVerifierFilter, LoginAuthenticationFilter loginAuthenticationFilter) throws Exception {
         this.authenticationProvider = authenticationProvider;
         this.tokenVerifierFilter = tokenVerifierFilter;
-        this.authenticationFilter = authenticationFilter;
+        this.loginAuthenticationFilter = loginAuthenticationFilter;
     }
 
     @Override
@@ -36,14 +36,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilter(authenticationFilter)
+                .addFilter(loginAuthenticationFilter)
                 .authorizeRequests()
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterAfter(tokenVerifierFilter, JwtAuthenticationFilter.class)
-                .formLogin();
+                .addFilterAfter(tokenVerifierFilter, LoginAuthenticationFilter.class)
+                .formLogin(); // TODO: implement in header
     }
 
     @Override
