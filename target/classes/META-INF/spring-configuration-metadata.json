@@ -1,16 +1,41 @@
 {
   "groups": [
     {
+      "name": "application.jwt",
+      "type": "com.codecool.pokedex.config.JwtConfiguration",
+      "sourceType": "com.codecool.pokedex.config.JwtConfiguration"
+    },
+    {
       "name": "pokemon",
-      "type": "com.codecool.pokedex.config.PokemonLoaderConfig",
-      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfig"
+      "type": "com.codecool.pokedex.config.PokemonLoaderConfiguration",
+      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfiguration"
     }
   ],
   "properties": [
     {
+      "name": "application.jwt.expiration-days",
+      "type": "java.lang.Integer",
+      "sourceType": "com.codecool.pokedex.config.JwtConfiguration"
+    },
+    {
+      "name": "application.jwt.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.codecool.pokedex.config.JwtConfiguration"
+    },
+    {
+      "name": "application.jwt.token-prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.codecool.pokedex.config.JwtConfiguration"
+    },
+    {
       "name": "pokemon.load",
       "type": "java.lang.Boolean",
-      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfig"
+      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfiguration"
+    },
+    {
+      "name": "pokemon.number",
+      "type": "java.lang.Integer",
+      "sourceType": "com.codecool.pokedex.config.PokemonLoaderConfiguration"
     }
   ],
   "hints": []

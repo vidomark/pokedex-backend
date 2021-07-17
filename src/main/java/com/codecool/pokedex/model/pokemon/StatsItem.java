@@ -21,8 +21,8 @@ public class StatsItem{
 	private Stat stat;
 
 	@SerializedName("base_stat")
-	private int baseStat;
+	private Integer baseStat;
 
 	@SerializedName("effort")
-	private int effort;
+	private Integer effort;
 }
