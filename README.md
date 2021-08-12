@@ -4,17 +4,11 @@ The application functions as an encyclopedia to the pokemon universe.
 
 ## Installation
 
-1. Clone this repository: `git clone https://github.com/vidomark/pokedex-backend`
-2. Install postgresql
-3. Create database named `pokedex` (for development) and `pokedex_test` (for test)
-4. Change into the directory of the project
-5. Run `mvn clean package spring-boot:repackage`
-6. Run `java -jar pokedex-0.0.1-SNAPSHOT.jar`
+Not implemented yet.
 
 ## Usage
 
-- After installing enter the following url in the browser: `localhost:8080/index.html`
-- To close the app simply press `ctrl + c` in the terminal.
+Not implemented yet.
 
 ## About
 
