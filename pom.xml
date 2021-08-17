@@ -142,7 +142,7 @@
 				<version>2.19.1</version>
 			</plugin>
 
-			<!--install node-->
+			<!--&lt;!&ndash;install node&ndash;&gt;
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
@@ -185,7 +185,7 @@
 				</executions>
 			</plugin>
 
-			<!--copy build to jar-->
+			&lt;!&ndash;copy build to jar&ndash;&gt;
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -203,7 +203,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 

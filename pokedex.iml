@@ -16,6 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" value="4e2e542a-2f2b-4389-af6e-8d17a8bb228a" />
+          <factory-entry name="pokedex" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
